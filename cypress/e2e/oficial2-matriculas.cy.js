@@ -85,11 +85,12 @@ describe('template spec', () => {
         url: matriculas,
         headers: {
           'X-API-KEY': apiKey
-        }
+        },
+
       })
       .then((response) => {
 
-        // expect(response.status).to.eq(statusCode) - Status retornando 200, sendo que é para retornar 409
+        expect(response.status).to.eq(statusCode) // Status retornando 200, sendo que é para retornar 409
         expect(response.body.mensagem).to.eq("A matrícula informada possui débitos em aberto. Não é possível obter dados da mesma até a quitação!")
 
 
