@@ -3,7 +3,7 @@ describe('template spec', () => {
 
   it('Deve ser possível retornar os dados de matrícula válida e sem restrições ', () => {
     
-    const matriculas = "http://localhost:8080/v1/matriculas"
+    const matriculas = "4653421"
 
     const apiKey = 'unime-qualidade-oficial2'
     
@@ -11,7 +11,7 @@ describe('template spec', () => {
 
     cy.request({
       method: 'GET',
-      url: `${matriculas}/4653421`,
+      url: matriculas,
       headers: {
         'X-API-KEY': apiKey
       }
@@ -68,7 +68,7 @@ describe('template spec', () => {
 
     it('Deve ser possível retornar dados de matrícula válida e que está com pagamento atrasado', () => {
 
-      const matriculas = "http://localhost:8080/v1/matriculas"
+      const matriculas = "5566778"
 
       const apiKey = 'unime-qualidade-oficial2'
     
@@ -76,7 +76,7 @@ describe('template spec', () => {
 
       cy.request({
         method: 'GET',
-        url: `${matriculas}/5566778`,
+        url: matriculas,
         headers: {
           'X-API-KEY': apiKey
         }
@@ -93,7 +93,7 @@ describe('template spec', () => {
 
     it('Deve ser possível consultar os dados de uma matrícula de aluno bolsista 100% e obter os dados dessa matrícula', () => {
 
-      const matriculas = "http://localhost:8080/v1/matriculas"
+      const matriculas = "7890123"
 
       const apiKey = 'unime-qualidade-oficial2'
     
@@ -101,7 +101,7 @@ describe('template spec', () => {
 
       cy.request({
         method: 'GET',
-        url: `${matriculas}/7890123`,
+        url: matriculas,
         headers: {
           'X-API-KEY': apiKey
         }
@@ -159,7 +159,7 @@ describe('template spec', () => {
 
     it('Deve ser possível consultar os dados de uma matrícula de aluno bolsista 50% e obter os dados dessa matrícula', () => {
 
-      const matriculas = "http://localhost:8080/v1/matriculas"
+      const matriculas = "1113499"
 
       const apiKey = 'unime-qualidade-oficial2'
     
@@ -167,7 +167,7 @@ describe('template spec', () => {
 
       cy.request({
         method: 'GET',
-        url: `${matriculas}/1113499`,
+        url: matriculas,
         headers: {
           'X-API-KEY': apiKey
         }
@@ -224,7 +224,7 @@ describe('template spec', () => {
 
     it('Deve ser possível consultar os dados de uma matrícula de aluno que já realizou todos os pagamentos das mensalidades futuras ', () => {
 
-      const matriculas = "http://localhost:8080/v1/matriculas"
+      const matriculas = "1122334"
 
       const apiKey = 'unime-qualidade-oficial2'
     
@@ -232,7 +232,7 @@ describe('template spec', () => {
 
       cy.request({
         method: 'GET',
-        url: `${matriculas}/1122334`,
+        url: matriculas,
         headers: {
           'X-API-KEY': apiKey
         }
@@ -288,8 +288,62 @@ describe('template spec', () => {
 
     })
 
+    it('Deve ser possível retornar uma mensagem de erro ao consultar os dados de uma matrícula que já foi excluída', () => {
 
+      
+      const matriculas = "4653499"
+
+      const apiKey = 'unime-qualidade-oficial2'
     
+      const statusCode = 404
+
+      cy.request({
+        method: 'GET',
+        url: matriculas,
+        headers: {
+          'X-API-KEY': apiKey
+        },
+        failOnStatusCode: false
+      })
+      .then((response) => {
+
+        expect(response.status).to.eq(statusCode)
+
+        expect(response.body.mensagem).to.eq("A matrícula informada foi excluída de nossa base de dados!")
+
+
+      })
+
+
+    })
+
+    it('Deve ser retornada uma mensagem de erro ao consultar os dados de uma matrícula inválida', () => {
+    
+      const matriculas = "XPTO123"
+
+      const apiKey = 'unime-qualidade-oficial2'
+    
+      const statusCode = 400
+
+      cy.request({
+        method: 'GET',
+        url: matriculas,
+        headers: {
+          'X-API-KEY': apiKey
+        },
+        failOnStatusCode: false
+      })
+      .then((response) => {
+
+        expect(response.status).to.eq(statusCode)
+
+        expect(response.body.mensagem).to.eq("A matrícula informada não parece ser válida!")
+
+
+      })
+
+
+    })
 
   })
 
