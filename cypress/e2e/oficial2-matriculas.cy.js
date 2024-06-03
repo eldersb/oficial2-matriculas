@@ -26,7 +26,6 @@ describe('template spec', () => {
       expect(typeof(response.body.courseName)).to.eq('string')
       expect(response.body.courseName.length).to.be.greaterThan(0)
 
-
       expect(response.body).to.have.property('tuition')
       expect(typeof(response.body.tuition)).to.eq('object')
 
@@ -35,7 +34,7 @@ describe('template spec', () => {
 
       expect(response.body.tuition).to.have.property('formattedAmount')
       expect(typeof(response.body.tuition.formattedAmount)).to.eq('string')
-      expect(response.body.tuition.formattedAmount).to.be.include('R$') // Verificando se o campo possui o R$
+      expect(response.body.tuition.formattedAmount).to.be.include('R$') 
 
       expect(response.body.tuition).to.have.property('dueDate')
       expect(typeof(response.body.tuition.dueDate)).to.eq('string')
@@ -90,7 +89,7 @@ describe('template spec', () => {
       })
       .then((response) => {
 
-        expect(response.status).to.eq(statusCode) // Status retornando 200, sendo que é para retornar 409
+        expect(response.status).to.eq(statusCode) 
         expect(response.body.mensagem).to.eq("A matrícula informada possui débitos em aberto. Não é possível obter dados da mesma até a quitação!")
 
 
@@ -117,7 +116,7 @@ describe('template spec', () => {
         expect(response.status).to.eq(statusCode)
 
         expect(response.body).to.have.property('id') 
-        expect(typeof(response.body.id)).to.eq('string') // Esse id é uma string, verificar se é para ser mesmo uma string ou um number(int)
+        expect(typeof(response.body.id)).to.eq('string') 
 
         expect(response.body).to.have.property('courseName')
         expect(typeof(response.body.courseName)).to.eq('string')
@@ -190,7 +189,7 @@ describe('template spec', () => {
         expect(response.status).to.eq(statusCode)
 
         expect(response.body).to.have.property('id') 
-        expect(typeof(response.body.id)).to.eq('string') // Esse id é uma string, verificar se é para ser mesmo uma string ou um number(int)
+        expect(typeof(response.body.id)).to.eq('string') 
 
         expect(response.body).to.have.property('courseName')
         expect(typeof(response.body.courseName)).to.eq('string')
@@ -214,7 +213,7 @@ describe('template spec', () => {
         expect(response.body.tuition).to.have.property('status')
         expect(typeof(response.body.tuition.status)).to.eq('string')
         expect(response.body.tuition.status).to.be.include('_')
-        expect(response.body.tuition.status).to.be.not.include('BOLSISTA_50') // Retornando EM_DIA em um aluno bolsista 50%, porém o story pede para realmente não informar o status BOLSISTA_50
+        expect(response.body.tuition.status).to.be.not.include('BOLSISTA_50') 
 
         expect(response.body).to.have.property('student')
         expect(typeof(response.body.student)).to.eq('object')
