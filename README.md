@@ -14,7 +14,7 @@ Repositório criado para a prova oficial 2 da disciplina de Gerenciamento e Qual
 * Ter instalado previamente o framework de automatação de testes Cypress
 * Ter previamente instalado o Intelij Idea Community para executar a api com o JDK instalado no projeto
 * Ter previamente instalado o Postman para rodar as requisições
-* É possível o endpoint: http://localhost:8080/v1/matriculas/{numero_da_matricula} definindo o número da matrícula a ser buscada
+* É possível acessar o endpoint: http://localhost:8080/v1/matriculas/{numero_da_matricula} definindo o número da matrícula a ser buscada
 * Utilizar o method: GET
 * Configurar a ferramenta Postman com o header: X-API-KEY = unime-qualidade-oficial2, pois todas as chamadas à API devem informar o header *X-API-KEY* com o valor *unime-qualidade-oficial*
 
